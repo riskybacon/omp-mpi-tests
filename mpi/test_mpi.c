@@ -1,17 +1,26 @@
 #include <mpi.h>
 #include <stdio.h>
+#include <time.h>
 
 int main(int argc, char** argv) {
+  clock_t begin, end;
+
   // Initialize the MPI environment
-  MPI_Init(NULL, NULL);
+  begin = clock();
+  MPI_Init(argc, argv);
+  printf("MPI_Init time: %Lf\n", (long double) (clock() - begin) / CLOCKS_PER_SEC);
 
   // Get the number of processes
   int world_size;
+  begin = clock();
   MPI_Comm_size(MPI_COMM_WORLD, &world_size);
-
+  printf("MPI_Comm_size time: %Lf\n", (long double) (clock() - begin) / CLOCKS_PER_SEC);
+  
   // Get the rank of the process
   int world_rank;
+  begin = clock();
   MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+  printf("MPI_Comm_rank time: %Lf\n", (long double) (clock() - begin) / CLOCKS_PER_SEC);
 
   // Get the name of the processor
   char processor_name[MPI_MAX_PROCESSOR_NAME];
