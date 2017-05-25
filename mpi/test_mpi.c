@@ -7,7 +7,7 @@ int main(int argc, char** argv) {
 
   // Initialize the MPI environment
   begin = clock();
-  MPI_Init(argc, argv);
+  MPI_Init(&argc, &argv);
   printf("MPI_Init time: %Lf\n", (long double) (clock() - begin) / CLOCKS_PER_SEC);
 
   // Get the number of processes
